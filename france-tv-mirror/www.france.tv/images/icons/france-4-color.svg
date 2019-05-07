@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="39px" viewBox="0 0 45 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 450 0 450 39.25 0 39.25"></polygon>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Organisms/header/desktop/navigation_h2/TEST" transform="translate(-399.000000, -130.000000)">
+            <g id="nav" transform="translate(0.000000, 30.000000)"></g>
+            <g id="Group" transform="translate(249.000000, 125.000000)">
+                <g id="general/logos/bug/ferre-gauche/centre/bichromie/blanc/france2-3" transform="translate(0.000000, 5.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Duplicate-control"></g>
+                    <g id="atom/logos/bug/center/middle/bichromate/white/france4" mask="url(#mask-2)">
+                        <g transform="translate(150.000000, 0.000000)" id="logos/france4/bug/bichromie/violet-blanc">
+                            <g transform="translate(2.000000, 2.235669)">
+                                <g id="LOGO" transform="translate(7.500000, 7.500000)">
+                                    <path d="M7.5,12.61 C7.5,14.6811249 5.82103006,16.36 3.75,16.36 C1.67896994,16.36 0,14.6811249 0,12.61 C0,10.5389699 1.67896994,8.86 3.75,8.86 C5.82103006,8.86 7.5,10.5389699 7.5,12.61" id="Fill-1" fill="#8C1DAA"></path>
+                                    <path d="M23.354836,0 L23.354836,12.5428647 L25.91,12.5428647 L25.91,15.9714635 L23.354836,15.9714635 L23.354836,20 L19.5440389,20 L19.5440389,15.9714635 L10.66,15.9714635 L10.66,12.9133609 L19.022656,0 L23.354836,0 Z M19.5440389,12.5428647 L19.5440389,5.45526801 L14.9566075,12.5428647 L19.5440389,12.5428647 Z" id="Fill-4" fill="#FFFFFF"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

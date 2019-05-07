@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="39px" viewBox="0 0 45 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 450 0 450 39.25 0 39.25"></polygon>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Organisms/header/desktop/navigation_h2/TEST" transform="translate(-474.000000, -130.000000)">
+            <g id="nav" transform="translate(0.000000, 30.000000)"></g>
+            <g id="Group" transform="translate(249.000000, 125.000000)">
+                <g id="general/logos/bug/ferre-gauche/centre/bichromie/blanc/france2-3" transform="translate(0.000000, 5.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Duplicate-control"></g>
+                    <g id="atom/logos/bug/center/middle/bichromate/white/france5" mask="url(#mask-2)">
+                        <g transform="translate(225.000000, 0.000000)" id="logos/france5/bug/bichromie/vert-blanc">
+                            <g transform="translate(3.500000, 1.987261)">
+                                <g id="LOGO" transform="translate(7.450980, 7.695035)">
+                                    <path d="M7.45098039,12.9078014 C7.45098039,14.9641433 5.78298411,16.6312057 3.7254902,16.6312057 C1.66799628,16.6312057 0,14.9641433 0,12.9078014 C0,10.8513653 1.66799628,9.18439716 3.7254902,9.18439716 C5.78298411,9.18439716 7.45098039,10.8513653 7.45098039,12.9078014" id="Fill-1" fill="#00D182"></path>
+                                    <path d="M20.8328245,7.82696359 C20.2501671,7.35590117 18.873112,6.25365498 16.3228482,6.2812752 C15.4988254,6.29019719 14.889329,6.41178312 14.521198,6.5125827 L14.8260855,3.39842634 L22.0303647,3.39842634 L22.0303647,0 L11.7783248,0 L10.5312856,10.506315 L13.2053432,10.7851748 C14.2087881,9.94318517 15.2836489,9.70646753 16.0592872,9.7018167 C16.9388454,9.69650147 17.7935149,9.95372072 18.4143413,10.5000506 C19.1140131,11.1155734 19.605845,11.9742681 19.605845,13.1116328 C19.605845,15.2355425 17.804752,16.7081465 15.9759841,16.7081465 C14.5075463,16.7081465 13.1773898,15.8869432 12.3739838,14.7258497 L9.68627451,17.0195621 C11.4041573,19.0020487 13.7038617,20.106383 16.1146369,20.106383 C20.1323169,20.106383 23.3464052,17.3028829 23.3464052,13.1116328 C23.3464052,10.9307742 22.3809436,9.07860577 20.8328245,7.82696359" id="Fill-4" fill="#FFFFFF"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

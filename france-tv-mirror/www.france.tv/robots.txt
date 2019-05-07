@@ -1,0 +1,20 @@
+# www.robotstxt.org/
+# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
+
+User-agent: *
+Disallow: */cart/*
+Disallow: */recherche/*
+Disallow: *recherche=*
+Disallow: *?s=*
+Disallow: *?quicktabs*
+Disallow: *?utm_*
+Disallow: *?home_*
+Disallow: *?PHPSESSID=*
+Disallow: *?id_*
+Disallow: *?titre=*
+Disallow: *?onglet=*
+Disallow: *?page=recherche*
+Disallow: *?utm_source*
+Disallow: */reco/*
+Disallow: *?id_prog=*
+

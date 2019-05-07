@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="39px" viewBox="0 0 45 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>O</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 450 0 450 39.25 0 39.25"></polygon>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+        <g id="Organisms/header/desktop/navigation_h2/TEST" transform="translate(-549.000000, -130.000000)">
+            <g id="nav" transform="translate(0.000000, 30.000000)"></g>
+            <g id="Group" transform="translate(249.000000, 125.000000)">
+                <g id="general/logos/bug/ferre-gauche/centre/bichromie/blanc/france2-3" transform="translate(0.000000, 5.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Duplicate-control"></g>
+                    <g id="atom/logos/bug/center/middle/bichromate/white/franceO" mask="url(#mask-2)">
+                        <g transform="translate(300.000000, 0.000000)" id="logos/franceÔ/bug/bichromie/jaune-blanc">
+                            <g>
+                                <g id="LOGO" transform="translate(7.500000, 7.700637)">
+                                    <path d="M7.5,16.7924038 C7.5,18.8502686 5.82100882,20.5184713 3.74995256,20.5184713 C1.6788963,20.5184713 0,18.8502686 0,16.7924038 C0,14.7344447 1.6788963,13.066242 3.74995256,13.066242 C5.82100882,13.066242 7.5,14.7344447 7.5,16.7924038" id="Fill-1" fill="#FFFFFF"></path>
+                                    <polyline id="Fill-2" fill="#FFFFFF" points="20.3999524 1.8764106 21.9917539 3.57707006 24.6 3.57707006 21.8198705 0 18.9801295 0 16.2 3.57707006 18.8082461 3.57707006 20.3999524 1.8764106"></polyline>
+                                    <path d="M20.3998566,20.3517483 C17.1006139,20.3517483 14.6510125,17.6322912 14.6510125,14.3083284 C14.6510125,10.9843656 17.1006139,8.26481222 20.3998566,8.26481222 C23.6993861,8.26481222 26.148892,10.9843656 26.148892,14.3083284 C26.148892,17.6322912 23.6993861,20.3517483 20.3998566,20.3517483 Z M20.3998566,4.76942675 C14.7187887,4.76942675 10.8,9.03544384 10.8,14.3083284 C10.8,19.581213 14.7187887,23.8471338 20.3998566,23.8471338 C26.0810201,23.8471338 30,19.581213 30,14.3083284 C30,9.03544384 26.0810201,4.76942675 20.3998566,4.76942675 Z" id="Fill-3" fill="#FFFFFF"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

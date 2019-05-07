@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="39px" viewBox="0 0 45 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 450 0 450 39.25 0 39.25"></polygon>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Organisms/header/desktop/navigation_h2/TEST" transform="translate(-324.000000, -130.000000)">
+            <g id="nav" transform="translate(0.000000, 30.000000)"></g>
+            <g id="Group" transform="translate(249.000000, 125.000000)">
+                <g id="general/logos/bug/ferre-gauche/centre/bichromie/blanc/france2-3" transform="translate(0.000000, 5.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Duplicate-control"></g>
+                    <g id="atom/logos/bug/center/middle/bichromate/white/france3" mask="url(#mask-2)">
+                        <g transform="translate(75.000000, 0.000000)" id="logos/france3/bug/bichromie/bleu-blanc">
+                            <g transform="translate(3.250000, 2.235669)">
+                                <g id="LOGO" transform="translate(7.597403, 7.500000)">
+                                    <path d="M7.5974026,12.9516225 C7.5974026,15.0226525 5.89662785,16.7016225 3.7987013,16.7016225 C1.70077475,16.7016225 0,15.0226525 0,12.9516225 C0,10.8805924 1.70077475,9.20162249 3.7987013,9.20162249 C5.89662785,9.20162249 7.5974026,10.8805924 7.5974026,12.9516225" id="Fill-1" fill="#0082E6"></path>
+                                    <path d="M19.2041092,6.64806737 L22.8574766,2.25363017 L22.8574766,0 L10.6318277,0 L10.6318277,3.38044525 L17.2111092,3.38044525 L13.5947653,7.57047905 L13.5947653,10.0000944 C14.342755,9.63386771 15.2056716,9.43673408 16.0110284,9.43673408 C18.2548045,9.43673408 19.9808306,10.9859514 19.9808306,13.0423535 C19.9808306,15.1549312 18.1110493,16.6197436 16.2123435,16.6197436 C14.6879217,16.6197436 13.3069658,15.8028853 12.4728773,14.6479352 L9.68252302,16.9295115 C11.4659162,18.9016031 13.8535439,20 16.3562914,20 C20.5274088,20 23.8643412,17.2113333 23.8643412,13.0423535 C23.8643412,10.0565532 21.9657317,7.69028871 19.2041092,6.64806737" id="Fill-4" fill="#FFFFFF"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

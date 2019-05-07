@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="39px" viewBox="0 0 45 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 450 0 450 39.25 0 39.25"></polygon>
+    </defs>
+    <g id="Organisms" stroke="none" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd">
+        <g id="Organisms/header/desktop/navigation_h2/TEST" transform="translate(-249.000000, -130.000000)">
+            <g id="nav" transform="translate(0.000000, 30.000000)"></g>
+            <g id="Group" transform="translate(249.000000, 125.000000)">
+                <g id="general/logos/bug/ferre-gauche/centre/bichromie/blanc/france2-3" transform="translate(0.000000, 5.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Duplicate-control"></g>
+                    <g id="atom/logos/bug/center/middle/bichromate/white/france2" mask="url(#mask-2)">
+                        <g id="logos/france2/bug/bichromie/rouge-blanc" transform="translate(3.250000, 1.738854)">
+                            <g id="LOGO" transform="translate(7.597403, 7.804196)">
+                                <path d="M3.7987013,17.1188811 C1.70077475,17.1188811 0,15.4282657 0,13.3426573 C0,11.2571446 1.70077475,9.56643357 3.7987013,9.56643357 C5.89662785,9.56643357 7.5974026,11.2571446 7.5974026,13.3426573 C7.5974026,15.4282657 5.89662785,17.1188811 3.7987013,17.1188811 Z" id="Fill-1" fill="#FFFFFF"></path>
+                                <path d="M16.7317645,3.49394539 C18.2938311,3.49394539 19.413717,4.83328787 19.413717,6.25994488 C19.413717,7.27906913 18.9717312,8.41454779 17.3801143,10.1906578 L10.1298701,17.7772768 L10.1298701,20.6433566 L23.8051948,20.6433566 L23.8051948,17.1494113 L16.0492807,17.1494113 L20.7400644,12.112357 C22.1253173,10.5401108 23.3406806,8.70572614 23.3406806,6.25994488 C23.3406806,2.56223311 20.3274338,0 16.7317645,0 C13.4447634,0 10.2260303,2.33040135 10.3641265,6.62849794 L14.0784844,6.62849794 C14.0784844,6.22125753 14.0985747,5.86011061 14.1784481,5.54154902 C14.5509957,4.05574031 15.7204245,3.49394539 16.7317645,3.49394539" id="Fill-4" fill="#FFFFFF"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
