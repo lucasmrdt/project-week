@@ -3,7 +3,7 @@ import {html, css, LitElement} from 'https://unpkg.com/lit-element/lit-element.j
 const AD_URL = '../../build/media/ad.mp4';
 const VIDEO_URL = '../../build/media/video.mp4';
 
-const PLAYRATE = 1;
+const PLAYRATE = 2.5;
 
 const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
