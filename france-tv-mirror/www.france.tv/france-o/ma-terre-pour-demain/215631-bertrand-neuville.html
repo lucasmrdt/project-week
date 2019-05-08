@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script type="module" src="../../advertisement.js"></script>
+
   <script type="text/javascript">
     (window.NREUM || (NREUM = {})).loader_config = {
       xpid: "VQIEUFBQChAFUFdXBAgPUw=="
@@ -1206,8 +1208,16 @@
     <div class="c-background-player"><img src="../../image/background_16x9/1200/675/h/v/w/b90890f9-phpu6mwvh.png"
         onerror="this.style.display='none'" /></div>
     <div class="c-player-content h-flex">
-      <div class="c-player h-flex" data-content-id="215631" data-show-ad data-can-init data-with-resume></div>
-      <script>
+      <style>
+          #player {
+            width: 100%;
+          }
+          #quiz {
+            position: absolute;
+          }
+      </style>
+      <div id="player-container" class="c-player h-flex"></div>
+      <!-- <script>
         var FTVPlayerVideos = [{
           "contentId": 215631,
           "videoId": "f10efb9f-7e8d-468d-99a0-6f753c922496",
@@ -1367,7 +1377,7 @@
           },
           "comingNext": []
         }]
-      </script>
+      </script> -->
       <div class="c-content-metadata h-flex">
         <div class="c-content-metadata__header h-flex">
           <div class="c-content-metadata__img"><a href="https://www.france.tv/france-o/ma-terre-pour-demain/"><img
@@ -1910,9 +1920,19 @@
       "agent": ""
     }
   </script>
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-  <script type="text/babel" src="../../react-component.js"></script>
+
+<!-- SCRIPT -->
+
+<!-- STYLE -->
+<style>
+  #player {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+</style>
+
 </body>
 
 </html>
