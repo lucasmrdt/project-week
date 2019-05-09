@@ -3,7 +3,26 @@ import {html, css, LitElement} from 'https://unpkg.com/lit-element/lit-element.j
 const AD_URL = '../../build/media/ad.mp4';
 const VIDEO_URL = '../../build/media/video.mp4';
 
-const PLAYRATE = 5;
+const PLAYRATE = 10;
+
+const COLORS = {
+  black: '#181D25',
+  white: '#FFFFFF',
+};
+
+const STATE = {
+  hiden: 'hiden',
+  default: 'default',
+  succeed: 'succeed',
+  failed: 'failed',
+  finished: 'finished',
+};
+
+const HEIGHT = {
+  validQuiz: 70,
+  invalidQuiz: 80,
+  default: 200,
+};
 
 const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
@@ -50,6 +69,7 @@ class Counter extends LitElement {
           color: ${color};
           font-size: 20px;
           font-weight: bold;
+          display: ${duration > 0 ? 'block' : 'none'}
         }
         .pulse {
           animation: pulse ${1000/PLAYRATE}ms infinite;
@@ -69,106 +89,123 @@ class Counter extends LitElement {
 }
 
 class Quiz extends LitElement {
-  static HEIGHT = 200;
   static DURATION = 60000;
 
-  QUIZ = {
-    question: 'Quel est le prix de la prochaine Renault Zoé ?',
-    reponses: {
-      a: { label: '1 999 €', isValid: true },
-      b: { label: '2 500 €' },
-      c: { label: '3 000 €'},
-      d: { label: '4 000 €' },
-    },
-  };
+  quiz = null;
   selectedAnswer = null;
-  state = 'default';
-  animation = 'default';
+  height = HEIGHT.default;
+  state = STATE.default;
+  animation = STATE.default;
+
+  constructor() {
+    super();
+    this.addEventListener('onad', this.onAd);
+    this.addEventListener('onhide', this.onHide);
+  }
 
   static properties = {
     height: { type: Number },
+    duration: { type: Number },
   };
 
   get question() {
-    return this.QUIZ.question;
+    return this.quiz.question;
   }
 
   get answers() {
-    return this.QUIZ.reponses;
+    return this.quiz.reponses;
   }
 
-  stopQuiz = () => {
-    this.dispatchEvent(new CustomEvent('end'));
+  onHide = (e) => {
+    const {height} = e.detail;
+    this.state = STATE.hiden;
+    this.height = height;
+    this.requestUpdate();
   };
 
-  onSelectAnswer = (e) => {
-    if (this.selectedAnswer) return;
+  onAd = (e) => {
+    const {quiz} = e.detail;
+    this.height = HEIGHT.default;
+    this.animation = STATE.default;
+    this.selectedAnswer = null;
+    this.state = STATE.default;
+    this.quiz = quiz;
+    this.requestUpdate();
+  };
+
+  stopQuiz = () => {
+    const event = new CustomEvent('end');
+    this.dispatchEvent(event);
+  };
+
+  onSelectAnswer = async (e) => {
+    if (this.selectedAnswer) {
+      return;
+    }
 
     const answerID = e.target.id;
     const answer = this.answers[answerID];
     const isValid = answer.isValid || false;
 
     this.selectedAnswer = answerID;
-    this.state = isValid ? 'suceed' : 'failed';
-    this.QUIZ.question = (isValid
-      ? `Bien joué la renault zoé est bien à "${answer.label}" 🎉`
-      : `Et non la Renault zoé n\'est pas à "${answer.label}", regarde bien 😌`);
+    this.state = isValid ? STATE.succeed : STATE.failed;
+    this.quiz.question = (isValid
+      ? this.quiz.success.replace('$data', answer.label)
+      : this.quiz.fail.replace('$data', answer.label));
 
     this.requestUpdate();
 
-    if (isValid) {
-      setTimeout(() => this.dispatchEvent(new CustomEvent('end')), 5000);
-    }
-    setTimeout(() => {
-      this.animation = 'finished';
-      this.requestUpdate();
-    }, 600);
-    setTimeout(() => this.dispatchEvent(new CustomEvent('answer', { detail: { isValid } })), 600);
+    await wait(400);
+
+    const event = new CustomEvent('answer', { detail: { isValid } });
+    this.animation = STATE.finished;
+    this.dispatchEvent(event);
+    this.requestUpdate();
   };
 
   render() {
-    const { state, animation, selectedAnswer, height } = this;
+    const {state, animation, selectedAnswer, height, duration} = this;
 
     return html`
       <style>
         :host {
-          height: ${height || Quiz.HEIGHT}px;
           width: 100%;
           position: absolute;
           bottom: 0;
           overflow: hidden;
-          background: ${animation === 'finished' ? '#181D25' : '#ffffff'};
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
           display: flex;
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
+          height: ${height}px;
+          background: ${animation === STATE.finished ? COLORS.black : COLORS.white};
         }
         #counter {
-          display: ${state === 'succeed' ? 'none' : 'block'};
           position: absolute;
           top: 5px;
           right: 25px;
           z-index: 2100;
+          display: ${state === STATE.succeed ? 'none' : 'block'};
         }
         #question {
           color: black;
-          font-weight: ${state === 'default' ? 'bold' : 'normal'};
           font-family: Brown;
-          font-size: ${state === 'default' ? 24 : 20}px;
           letter-spacing: 2px;
-          line-height: ${state === 'default' ? 'default' : '30px'};
-          padding: 0 ${state === 'suceed' ? 0 : 100}px;
           text-align: center;
           z-index: 2000;
+          font-weight: ${state === STATE.default ? 'bold' : 'normal'};
+          font-size: ${state === STATE.default ? 24 : 20}px;
+          line-height: ${state === STATE.default ? 'default' : '30px'};
+          padding: 0 ${state === STATE.succeed ? 0 : 100}px;
         }
         #question.answered {
           color: white;
         }
         #answers {
           display: flex;
-          position: ${state !== 'default' ? 'absolute' : 'unset'};
+          position: ${animation === STATE.finished ? 'absolute' : 'unset'};
           bottom: 0;
           width: 100%;
           justify-content: space-around;
@@ -186,7 +223,6 @@ class Quiz extends LitElement {
           border-radius: 30px;
           top: 50%;
           transform: translateY(-50%);
-          transition: transform 1s;
         }
         .answer {
           height: 38px;
@@ -218,6 +254,7 @@ class Quiz extends LitElement {
         }
         #answers.answered .selected::before {
           transform: scale(100);
+          transition: transform .5s;
           background-color: #181D25;
           border: none;
         }
@@ -226,11 +263,16 @@ class Quiz extends LitElement {
         }
       </style>
 
-      <lit-counter color=${state === 'failed' ? 'white' : '#181D25'} duration=${Quiz.DURATION / 1000} id="counter" @end=${this.stopQuiz}></lit-counter>
+      <lit-counter
+        id="counter"
+        color=${state === STATE.failed ? COLORS.white : COLORS.black}
+        duration=${duration}
+        @end=${this.stopQuiz}
+      ></lit-counter>
 
-      <h1 id="question" class=${state !== 'default' ? 'answered' : ''}>${this.question}</h1>
+      <h1 id="question" class=${state !== STATE.default ? 'answered' : ''}>${this.question}</h1>
 
-      <div id="answers" class=${state !== 'default' ? 'answered' : ''}>
+      <div id="answers" class=${state !== STATE.default ? 'answered' : ''}>
         ${Object.keys(this.answers).map(answerID => html`
           <button class="answer ${selectedAnswer === answerID ? 'selected' : ''}" id=${answerID} @click=${this.onSelectAnswer}>
             ${this.answers[answerID].label}
@@ -242,16 +284,60 @@ class Quiz extends LitElement {
 }
 
 class Advertisement extends LitElement {
+  URLS = [
+    {
+      src: '../../build/media/video.mp4',
+    },
+    {
+      src: '../../build/media/sponsor.mp4',
+      sponsorised: true,
+    },
+    {
+      time: 60,
+      src: '../../build/media/ad-2.mp4',
+      quiz: {
+        question: 'Qui meurt à la fin ?',
+        success: 'Bien joué c\'est bien "$data" qui meurt 🎉',
+        fail: 'Et non ce n\'est pas "$data" qui meurt, regarde bien 😌',
+        reponses: {
+          a: { label: 'Iron man', isValid: true },
+          b: { label: 'Thor' },
+          c: { label: 'Hulk'},
+          d: { label: 'mes couilles' },
+        },
+      },
+    },
+    {
+      src: '../../build/media/sponsor.mp4',
+      sponsorised: true,
+    },
+    {
+      time: 60,
+      src: '../../build/media/ad.mp4',
+      quiz: {
+        question: 'Quel est le prix de la prochaine Renault Zoé ?',
+        success: 'Bien joué la renault zoé est bien à "$data" 🎉',
+        fail: 'Et non la Renault zoé n\'est pas à "$data", regarde bien 😌',
+        reponses: {
+          a: { label: '1 999 €', isValid: true },
+          b: { label: '2 500 €' },
+          c: { label: '3 000 €'},
+          d: { label: '4 000 €' },
+        },
+      },
+    },
+  ];
+
+  hasAlreadyWatched = false;
+  selectedUrl = null;
   url = AD_URL;
-  quizHeight = Quiz.HEIGHT;
+  quizHeight = 0;
   quizIsHidden = false;
 
-  static get properties() {
-    return {
-      quizIsHidden: { type: Boolean },
-      url: { type: String },
-    }
-  };
+  constructor() {
+    super();
+    window.onload = this.nextVideo;
+  }
 
   setupPlayer = async (e) => {
     const player = e.target;
@@ -264,35 +350,52 @@ class Advertisement extends LitElement {
     } catch {}
   };
 
-  skipAd = () => {
-    this.url = VIDEO_URL;
-  };
+  nextVideo = (e) => {
+    if (this.URLS.length === 0) return;
 
-  hideQuiz = () => {
-    this.quizHeight = -10;
-    if (this.url !== VIDEO_URL) {
-      this.url = VIDEO_URL;
+    this.selectedUrl = this.URLS.pop();
+    if (e && this.selectedUrl.sponsorised) {
+      this.selectedUrl = this.URLS.pop();
     }
+
+    if (localStorage.getItem(this.selectedUrl.src)) {
+      this.hasAlreadyWatched = true;
+    } else {
+      localStorage.setItem(this.selectedUrl.src, 'true');
+      this.hasAlreadyWatched = false;
+    }
+
+    const quiz = this.shadowRoot.querySelector('lit-quiz');
+    let event = null;
+
+    if (this.selectedUrl.quiz) {
+      this.quizHeight = HEIGHT.default;
+      event = new CustomEvent('onad', { detail: {quiz: this.selectedUrl.quiz} });
+    } else if (this.URLS.length === 0) {
+      this.quizHeight = -10;
+    }
+    event && quiz.dispatchEvent(event);
     this.requestUpdate();
   };
 
   onQuizAnswer = (e) => {
     const {isValid} = e.detail;
-    this.quizHeight = isValid ? 70 : 80;
-    // if (isValid) {
-    //   this.skipAd();
-    // }
-    this.requestUpdate();
+    this.quizHeight = isValid ? HEIGHT.validQuiz : HEIGHT.invalidQuiz;
+    if (isValid) {
+      this.nextVideo();
+    } else {
+      this.requestUpdate();
+    }
   };
 
   render() {
-    const { quizHeight, url } = this;
+    const {quizHeight, selectedUrl, hasAlreadyWatched} = this;
 
     return html`
       <style>
         :host {
-          padding-bottom: ${quizHeight}px;
-          transition: padding 500ms;
+          padding-bottom: ${hasAlreadyWatched ? quizHeight : 0}px;
+          transition: padding 100ms;
         }
         #player {
           width: 100%;
@@ -300,18 +403,27 @@ class Advertisement extends LitElement {
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
         }
+        #quiz {
+          display: ${hasAlreadyWatched ? 'relative' : 'none'};
+        }
       </style>
 
       <video
-        @canplay=${this.setupPlayer}
         id="player"
-        src=${url}
         autoplay
         muted
         playsinline
-        loop
+        src=${selectedUrl ? selectedUrl.src : ''}
+        @canplay=${this.setupPlayer}
+        @ended=${this.nextVideo}
       ></video>
-      <lit-quiz height=${quizHeight} @answer=${this.onQuizAnswer} @end=${this.hideQuiz}></lit-quiz>
+      <lit-quiz
+        id="quiz"
+        height=${quizHeight}
+        duration=${selectedUrl ? selectedUrl.time : 0}
+        @answer=${this.onQuizAnswer}
+        @end=${this.hideQuiz}
+      ></lit-quiz>
     `;
   }
 }
