@@ -3,7 +3,7 @@ import {html, css, LitElement} from 'https://unpkg.com/lit-element/lit-element.j
 const AD_URL = '../../build/media/ad.mp4';
 const VIDEO_URL = '../../build/media/video.mp4';
 
-const PLAYRATE = 1;
+const PLAYRATE = 5;
 
 const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
@@ -14,6 +14,7 @@ class Counter extends LitElement {
 
   static properties = {
     duration: { type: Number },
+    color: { type: String },
   };
 
   constructor() {
@@ -41,12 +42,12 @@ class Counter extends LitElement {
   };
 
   render() {
-    const { duration, isAnimated } = this;
+    const { duration, isAnimated, color } = this;
 
     return html`
       <style>
         p {
-          color: ${duration <= 3 ? '#E91E63' : '#009688'};
+          color: ${color};
           font-size: 20px;
           font-weight: bold;
         }
@@ -82,6 +83,7 @@ class Quiz extends LitElement {
   };
   selectedAnswer = null;
   state = 'default';
+  animation = 'default';
 
   static properties = {
     height: { type: Number },
@@ -117,11 +119,15 @@ class Quiz extends LitElement {
     if (isValid) {
       setTimeout(() => this.dispatchEvent(new CustomEvent('end')), 5000);
     }
-    this.dispatchEvent(new CustomEvent('answer', { detail: { isValid } }));
+    setTimeout(() => {
+      this.animation = 'finished';
+      this.requestUpdate();
+    }, 600);
+    setTimeout(() => this.dispatchEvent(new CustomEvent('answer', { detail: { isValid } })), 600);
   };
 
   render() {
-    const { hidden, state, selectedAnswer, height } = this;
+    const { state, animation, selectedAnswer, height } = this;
 
     return html`
       <style>
@@ -131,7 +137,7 @@ class Quiz extends LitElement {
           position: absolute;
           bottom: 0;
           overflow: hidden;
-          background: #ffffff;
+          background: ${animation === 'finished' ? '#181D25' : '#ffffff'};
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
           display: flex;
@@ -140,10 +146,11 @@ class Quiz extends LitElement {
           align-items: center;
         }
         #counter {
-          display: ${state === 'suceed' ? 'none' : 'block'};
+          display: ${state === 'succeed' ? 'none' : 'block'};
           position: absolute;
           top: 5px;
           right: 25px;
+          z-index: 2100;
         }
         #question {
           color: black;
@@ -154,46 +161,74 @@ class Quiz extends LitElement {
           line-height: ${state === 'default' ? 'default' : '30px'};
           padding: 0 ${state === 'suceed' ? 0 : 100}px;
           text-align: center;
+          z-index: 2000;
+        }
+        #question.answered {
+          color: white;
         }
         #answers {
           display: flex;
+          position: ${state !== 'default' ? 'absolute' : 'unset'};
+          bottom: 0;
           width: 100%;
           justify-content: space-around;
           margin-bottom: 20px;
+        }
+        .answer::before {
+          z-index: 100;
+          position: absolute;
+          content: "";
+          width: 13px;
+          height: 13px;
+          left: -10px;
+          background-color: transparent;
+          border: solid 1px #181D25;
+          border-radius: 30px;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: transform 1s;
         }
         .answer {
           height: 38px;
           border-radius: 10px;
           font-size: 13px;
           padding: 0 20px;
-          color: white;
+          color: #181D25;
           min-width: 90px;
           border: none;
-          background: #484848;
           font-family: Brown;
+          position: relative;
           cursor: pointer;
           transition: transform 175ms;
-          box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.35);
         }
         .answer:hover {
           transform: scale(1.3);
-          background: transparent;
-          box-shadow: none;
-          border: solid 1px #484848;
-          color: #484848;
           font-weight: bold;
         }
-        #answers.answered {
-          display: none;
+        .answer:hover::before {
+          background-color: #181D25;
+          border: none;
+        }
+        #answers.answered .selected {
+          transform: scale(1.3);
+          z-index: 1000;
+        }
+        #answers.answered .answer {
+          cursor: default;
+        }
+        #answers.answered .selected::before {
+          transform: scale(100);
+          background-color: #181D25;
+          border: none;
         }
         button:focus {
           outline: 0;
         }
       </style>
 
-      <lit-counter duration=${Quiz.DURATION / 1000} id="counter" @end=${this.stopQuiz}></lit-counter>
+      <lit-counter color=${state === 'failed' ? 'white' : '#181D25'} duration=${Quiz.DURATION / 1000} id="counter" @end=${this.stopQuiz}></lit-counter>
 
-      <h1 id="question">${this.question}</h1>
+      <h1 id="question" class=${state !== 'default' ? 'answered' : ''}>${this.question}</h1>
 
       <div id="answers" class=${state !== 'default' ? 'answered' : ''}>
         ${Object.keys(this.answers).map(answerID => html`
@@ -243,10 +278,10 @@ class Advertisement extends LitElement {
 
   onQuizAnswer = (e) => {
     const {isValid} = e.detail;
-    this.quizHeight = isValid ? 70 : 110;
-    if (isValid) {
-      this.skipAd();
-    }
+    this.quizHeight = isValid ? 70 : 80;
+    // if (isValid) {
+    //   this.skipAd();
+    // }
     this.requestUpdate();
   };
 
@@ -261,7 +296,7 @@ class Advertisement extends LitElement {
         }
         #player {
           width: 100%;
-          z-index: 1;
+          z-index: 3000;
           border-top-left-radius: 10px;
           border-top-right-radius: 10px;
         }
